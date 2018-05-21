@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="row">
+    
+     <div class="col-md-6">
+
+      <h1 class="form-signin-heading">Your profile</h1>
+
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Full name</label>
+          <p class="form-control-static">{{ details?.name }}</p>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email</label>
+          <p class="form-control-static">{{ details?.email }}</p>
+        </div>
+      
+      </div>
+     
+      
+
+    </div>
+
+  </div>
+  <div *ngIf="auth.isAdmin()">
+   <h3> If you are seeing this then you are an admin</h3>
+   <div class="container-fluid main-container">
+  		<div class="col-md-2 sidebar">
+  			<div class="row">
+	<!-- uncomment code for absolute positioning tweek see top comment in css -->
+	<div class="absolute-wrapper"> </div>
+	<!-- Menu -->
+	<div class="side-menu">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Main Menu -->
+			<div class="side-menu-container">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#dashboard" data-toggle="tab"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+					<li><a href="#viewItems" data-toggle="tab"><span class="glyphicon glyphicon-plane"></span>View Items</a></li>
+					<li><a href="#addItem" data-toggle="tab"><span class="glyphicon glyphicon-shopping-cart"></span> Add Item</a></li>
+
+					<!-- Dropdown-->
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#dropdown-lvl1">
+							<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+						</a>
+
+						<!-- Dropdown level 1 -->
+						<div id="dropdown-lvl1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">
+									<li><a href="#">Link</a></li>
+									<li><a href="#">Link</a></li>
+									<li><a href="#">Link</a></li>
+
+									<!-- Dropdown level 2 -->
+									<li class="panel panel-default" id="dropdown">
+										<a data-toggle="collapse" href="#dropdown-lvl2">
+											<span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
+										</a>
+										<div id="dropdown-lvl2" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li><a href="#">Link</a></li>
+													<li><a href="#">Link</a></li>
+													<li><a href="#">Link</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+					<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+
+	</div>
+</div>  		</div>
+  		<div class="col-md-10 content">
+  			  <div class="panel panel-default fade in active" id="dashboard">
+	<div class="panel-heading"  >
+		Dashboard
+	</div>
+	<div class="panel-body">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+</div>
+<div class="panel panel-default fade in active" id="viewItems">
+    <div class="panel-heading"  >
+      Items
+    </div>
+    <div class="panel-body">
+      <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+        <thead>
+        <a href="#addItem" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+                <tr *ngFor="let item of Items">
+                    <td>{{item.name}}</td>
+                    <td>{{item.cat}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.describtion}}</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                </tr>
+                <tr>
+                    <td>Oranges</td>
+                    <td>Fruits</td>
+                    <td>15</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit,</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                </tr>
+                <tr>
+                    <td>Tomatos</td>
+                    <td>Vegtables</td>
+                    <td>20</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit,</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                </tr>
+        </table>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default fade in active" id="addItem">
+      <div class="panel-heading"  >
+        Add Item
+      </div>
+      <div class="panel-body">
+          <form class="form-horizontal" (ngSubmit)="enterItem()"> 
+              <fieldset>
+              
+              <!-- Form Name -->
+              <legend>New Item</legend>
+              <flash-messages></flash-messages>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Item Name</label>  
+                <div class="col-md-4">
+                <input name="name" [(ngModel)]="item.name" type="text" placeholder="name" class="form-control input-md">
+                
+                </div>
+              </div>
+              
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Item Category</label>  
+                <div class="col-md-4">
+                <input   name="cat" [(ngModel)]="item.cat" type="text" placeholder="category" class="form-control input-md">
+                  
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Item Price</label>  
+                  <div class="col-md-4">
+                  <input  name="price" [(ngModel)]="item.price" type="text" placeholder="price" class="form-control input-md">
+                  
+                  </div>
+                </div>
+              
+              <!-- Textarea -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textarea">Text Area</label>
+                <div class="col-md-4">                     
+                  <textarea class="form-control" id="textarea" name="describtion" [(ngModel)]="item.describtion" name="textarea">default text</textarea>
+                </div>
+              </div>
+              <!-- file uploader -->
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="singlebutton">Choose Image</label>
+                  <div class="col-md-4">
+                    <input type="file" (change)="onFileSelcted($event)">
+                  </div>
+                </div>
+              <!-- Button -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="singlebutton"></label>
+                <div class="col-md-4">
+                  <button id="singlebutton" name="itemSubmit" type="submit"class="btn btn-primary">Button</button>
+                </div>
+              </div>
+              
+              </fieldset>
+              </form>
+              
+      </div>
+    </div>
+    </div>
+</div>
+<script>
+  
+</script>
