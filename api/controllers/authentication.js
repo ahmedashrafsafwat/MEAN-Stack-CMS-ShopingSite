@@ -1,7 +1,7 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-
+var FacebookStrategy = require('passport-facebook')
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
@@ -65,5 +65,6 @@ module.exports.login = function(req, res) {
       res.status(401).json(info);
     }
   })(req, res);
+  
 
 };

@@ -25,7 +25,11 @@ require('./api/config/passport');
 var routesApi = require('./api/routes/index');
 
 var app = express();
-
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header("Access-Control-Allow-Origin");
+    next();
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -36,6 +40,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(cors());
 
 // [SH] Initialise Passport before using the route middleware

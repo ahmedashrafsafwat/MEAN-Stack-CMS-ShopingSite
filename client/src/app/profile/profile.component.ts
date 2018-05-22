@@ -48,7 +48,6 @@ export class ProfileComponent implements OnInit {
   enterItem() {
     console.log(this.item.name + ' ' + this.item.cat + ' ');
     this.http.post('/api/profile', this.item ).subscribe(res => {
-     
       console.log(res);
       console.log('item sent to server successfully');
       this._flashMessagesService.show('Item added', { cssClass: 'alert-success', timeout: 1000 });
